@@ -1,23 +1,29 @@
-function showMessage() {
-    alert("Hello, Nayemur! Welcome to your website.");
-}
-function moveText() {
-    let text = document.getElementById("movingText");
-    let position = window.innerWidth; // Start from the right
-    text.style.position = "absolute";
+// Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-    function animate() {
-        if (position > -text.offsetWidth) {
-            position -= 2; // Move left slowly
-            text.style.left = position + "px";
-            requestAnimationFrame(animate);
-        } else {
-            position = window.innerWidth; // Restart when it disappears
-            requestAnimationFrame(animate);
-        }
-    }
-    animate();
-}
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyD8ZVXO_Dmxfy4EfE9_oKJcgSO5Zfl5Fbs",
+    authDomain: "test-f97f5.firebaseapp.com",
+    projectId: "test-f97f5",
+    storageBucket: "test-f97f5.firebasestorage.app",
+    messagingSenderId: "729302428023",
+    appId: "1:729302428023:web:85dcdc5a39179988219972"
+  };
 
-// Run the function when the page loads
-window.onload = moveText;
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+// Function to save data to Firestore
+function saveData() {
+    db.collection("users").add({
+        name: "Nayemur Rahaman",
+        email: "nayem@example.com"
+    }).then(() => {
+        alert("Data Saved Successfully!");
+    }).catch((error) => {
+        console.error("Error saving data: ", error);
+    });
+}
